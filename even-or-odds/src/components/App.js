@@ -23,13 +23,12 @@ class App extends Component {
                             <h3>A new game awaits</h3>
                             <br />
                             <button onClick={this.props.startGame}>Start Game</button>
+                            <hr />
+                            <Instructions />
                         </div>
                     )
                 }
 
-                <hr />
-
-                <Instructions />
 
 
             </div>

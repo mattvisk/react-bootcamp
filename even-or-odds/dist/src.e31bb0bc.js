@@ -26866,69 +26866,37 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _reactRedux = require("react-redux");
 
 var _settings = require("../actions/settings");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+// stateless component (not modifying state, so don't need class component)
+var Instructions = function Instructions(props) {
+  var instructionsExpanded = props.instructionsExpanded;
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Instructions =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Instructions, _Component);
-
-  function Instructions() {
-    _classCallCheck(this, Instructions);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Instructions).apply(this, arguments));
+  if (instructionsExpanded) {
+    return _react.default.createElement("div", null, _react.default.createElement("p", {
+      style: {
+        maxWidth: 500,
+        margin: '20px auto'
+      }
+    }, "Welcome to evens or odds. The game goes like this. The deck is shuffled. Then choose: will the next card be even or odd? Make a choice on every draw, and see how many you get right! (Face cards don't count)"), _react.default.createElement("button", {
+      onClick: props.collapseInstructions
+    }, "Hide Instructions"));
   }
 
-  _createClass(Instructions, [{
-    key: "render",
-    value: function render() {
-      console.log('Instructions (this)', this);
-      return !this.props.gameStarted ? _react.default.createElement("div", null, this.props.instructionsExpanded ? _react.default.createElement("div", null, _react.default.createElement("p", {
-        style: {
-          maxWidth: 500,
-          margin: '20px auto'
-        }
-      }, "Welcome to evens or odds. The game goes like this. The deck is shuffled. Then choose: will the next card be even or odd? Make a choice on every draw, and see how many you get right! (Face cards don't count)"), _react.default.createElement("button", {
-        onClick: this.props.collapseInstructions
-      }, "Hide Instructions")) : _react.default.createElement("button", {
-        onClick: this.props.expandInstructions
-      }, "View Instructions")) : null;
-    }
-  }]);
-
-  return Instructions;
-}(_react.Component);
+  return _react.default.createElement("div", null, _react.default.createElement("button", {
+    onClick: props.expandInstructions
+  }, "View Instructions"));
+};
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    instructionsExpanded: state.instructionsExpanded,
-    gameStarted: state.gameStarted
+    instructionsExpanded: state.instructionsExpanded
   };
 };
 
@@ -26943,9 +26911,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-var componentConnector = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps);
-
-var _default = componentConnector(Instructions);
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Instructions);
 
 exports.default = _default;
 },{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/settings":"actions/settings.js"}],"components/App.js":[function(require,module,exports) {
@@ -27007,7 +26973,7 @@ function (_Component) {
         onClick: this.props.cancelGame
       }, "Cancel Game")) : _react.default.createElement("div", null, _react.default.createElement("h3", null, "A new game awaits"), _react.default.createElement("br", null), _react.default.createElement("button", {
         onClick: this.props.startGame
-      }, "Start Game")), _react.default.createElement("hr", null), _react.default.createElement(_Instructions.default, null));
+      }, "Start Game"), _react.default.createElement("hr", null), _react.default.createElement(_Instructions.default, null)));
     }
   }]);
 
