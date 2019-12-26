@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { startGame, cancelGame } from '../actions/settings';
+import { fetchNewDeck } from '../actions/deck';
+import fetchStates from '../reducers/fetchStates';
 import Instructions from './Instructions';
-import { fetchDeckResult } from '../actions/deck';
 
 class App extends Component {
 
     startGame = () => {
         this.props.startGame();
-
-        fetch('https://deckofcardsapi.com/api/deck/new/shuffle/')
-            .then(response => response.json())
-            .then(json => this.props.fetchDeckResult(json));
+        this.props.fetchNewDeck();
     }
 
     render() {
         console.log('this', this);
+
+        if (this.props.fetchState === fetchStates.error) {
+            return (
+                <div>
+                    <p>Please try reloading the app. An error occured. </p>
+                    <p>{this.props.message}</p>
+                </div>
+            )
+        }
 
         return (
             <div>
@@ -47,19 +54,23 @@ class App extends Component {
 
 const mapStateToProps = state => {
     console.log('state', state);
-    return { 
-        gameStarted: state.gameStarted
-    };
+
+    const { gameStarted, fetchState, message } = state;
+
+    return { gameStarted, fetchState, message };
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        startGame: () => dispatch(startGame()),
-        cancelGame: () => dispatch(cancelGame()),
-        fetchDeckResult: deckJson => dispatch(fetchDeckResult(deckJson))
-    };
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         startGame: () => dispatch(startGame()),
+//         cancelGame: () => dispatch(cancelGame()),
+//         fetchNewDeck: () => dispatch(fetchNewDeck())
+//     };
+// }
 
-const componentConnector = connect(mapStateToProps, mapDispatchToProps);
+const componentConnector = connect(
+    mapStateToProps,
+    { startGame, cancelGame, fetchNewDeck } // dispatches 
+);
 
 export default componentConnector(App);
