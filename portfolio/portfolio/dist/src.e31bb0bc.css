@@ -1,0 +1,117 @@
+@font-face {
+    font-family: PatuaOne;
+    src: url(/PatuaOne-Regular.ba137e58.ttf);
+    font-weight:400;
+}
+body {
+    margin:0;
+    text-align:center;
+}
+h1,h2,h3,h4,h5 {
+    font-family:PatuaOne;
+}
+
+
+/* Track
+---------------------*/
+.track {
+    width:250px;
+    height:250px;
+    position:relative;
+    display:inline-block;
+    margin:10px;
+    cursor:pointer;
+}
+
+.track img {
+    width:250px;
+}
+
+.track .track-text {
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,.7);
+    color:#ddd;
+    padding:5px;
+    margin:0;
+}
+
+.track-icon {
+    position: absolute;
+    top:50%;
+    left:50%;
+    color:#fff;
+    background:rgba(0,0,0,.7);
+    width:50px;
+    height:50px;
+    line-height:50px;
+    margin:-25px 0 0 -25px;
+    border-radius:50%;
+}
+@font-face {
+    font-family: PatuaOne;
+    src: url(/PatuaOne-Regular.1bfd8419.ttf);
+    font-weight:400;
+}
+
+body {
+    margin:0;
+    text-align:center;
+}
+
+h1,h2,h3,h4,h5 {
+    font-family:PatuaOne;
+}
+
+
+.profile {
+    margin:60px 0 0;
+    width:200px;
+    height:200px;
+    overflow: hidden;
+    display:inline-block;
+    border-radius: 50%;
+}
+.profile img {
+    width:300px;
+    margin-left:-80px;
+}
+
+
+
+.project-image {
+    height:300px;
+    overflow:hidden;
+    margin:2d0px 0;
+}
+.project-image img {
+    width:100%;
+}
+
+
+.title-fade-out {
+    opacity:0;
+    animation-name: fade-out;
+    animation-duration: 500ms;
+}
+.title-fade-in {
+    opacity:1;
+    animation-name: fade-in;
+    animation-duration: 500ms;
+}
+
+@keyframes fade-out {
+    from {opacity:1}
+    to {opacity:0}
+}
+
+@keyframes fade-in {
+    from {opacity:0}
+    to {opacity:1}
+}
+
+
+
+/*# sourceMappingURL=/src.e31bb0bc.css.map */

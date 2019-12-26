@@ -1,0 +1,62 @@
+@font-face {
+    font-family: PatuaOne;
+    src: url(assets/PatuaOne-Regular.ttf);
+    font-weight:400;
+}
+
+body {
+    margin:0;
+    text-align:center;
+}
+
+h1,h2,h3,h4,h5 {
+    font-family:PatuaOne;
+}
+
+
+.profile {
+    margin:60px 0 0;
+    width:200px;
+    height:200px;
+    overflow: hidden;
+    display:inline-block;
+    border-radius: 50%;
+}
+.profile img {
+    width:300px;
+    margin-left:-80px;
+}
+
+
+
+.project-image {
+    height:300px;
+    overflow:hidden;
+    margin:2d0px 0;
+}
+.project-image img {
+    width:100%;
+}
+
+
+.title-fade-out {
+    opacity:0;
+    animation-name: fade-out;
+    animation-duration: 500ms;
+}
+.title-fade-in {
+    opacity:1;
+    animation-name: fade-in;
+    animation-duration: 500ms;
+}
+
+@keyframes fade-out {
+    from {opacity:1}
+    to {opacity:0}
+}
+
+@keyframes fade-in {
+    from {opacity:0}
+    to {opacity:1}
+}
+
