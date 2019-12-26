@@ -26808,11 +26808,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SET_INSTRUCTIONS_EXPANDED = exports.SET_GAME_STARTED = void 0;
+exports.FETCH_DECK_RESULT = exports.SET_INSTRUCTIONS_EXPANDED = exports.SET_GAME_STARTED = void 0;
 var SET_GAME_STARTED = 'SET_GAME_STARTED';
 exports.SET_GAME_STARTED = SET_GAME_STARTED;
 var SET_INSTRUCTIONS_EXPANDED = 'SET_INSTRUCTIONS_EXPANDED';
 exports.SET_INSTRUCTIONS_EXPANDED = SET_INSTRUCTIONS_EXPANDED;
+var FETCH_DECK_RESULT = 'FETCH_DECK_RESULT';
+exports.FETCH_DECK_RESULT = FETCH_DECK_RESULT;
 },{}],"actions/settings.js":[function(require,module,exports) {
 "use strict";
 
@@ -26823,6 +26825,7 @@ exports.collapseInstructions = exports.expandInstructions = exports.cancelGame =
 
 var _types = require("./types");
 
+// action creators
 var startGame = function startGame() {
   return {
     type: _types.SET_GAME_STARTED,
@@ -26892,29 +26895,54 @@ var Instructions = function Instructions(props) {
   return _react.default.createElement("div", null, _react.default.createElement("button", {
     onClick: props.expandInstructions
   }, "View Instructions"));
-};
+}; // const mapStateToProps = state => {
+//     return { 
+//         instructionsExpanded: state.instructionsExpanded
+//     };
+// }
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         expandInstructions: () => dispatch(expandInstructions()),
+//         collapseInstructions: () => dispatch(collapseInstructions())
+//     };
+// }
+// const componentConnector = connect(mapStateToProps, mapDispatchToProps);
+// export default componentConnector(Instructions);
 
-var mapStateToProps = function mapStateToProps(state) {
+
+var _default = (0, _reactRedux.connect)(function (state) {
   return {
     instructionsExpanded: state.instructionsExpanded
   };
-};
+}, {
+  expandInstructions: _settings.expandInstructions,
+  collapseInstructions: _settings.collapseInstructions
+})(Instructions);
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/settings":"actions/settings.js"}],"actions/deck.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchDeckResult = void 0;
+
+var _types = require("./types");
+
+// action creator
+var fetchDeckResult = function fetchDeckResult(deckJson) {
+  var remaining = deckJson.remaining,
+      deck_id = deckJson.deck_id;
   return {
-    expandInstructions: function expandInstructions() {
-      return dispatch((0, _settings.expandInstructions)());
-    },
-    collapseInstructions: function collapseInstructions() {
-      return dispatch((0, _settings.collapseInstructions)());
-    }
+    type: _types.FETCH_DECK_RESULT,
+    remaining: remaining,
+    deck_id: deck_id
   };
 };
 
-var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Instructions);
-
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/settings":"actions/settings.js"}],"components/App.js":[function(require,module,exports) {
+exports.fetchDeckResult = fetchDeckResult;
+},{"./types":"actions/types.js"}],"components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26929,6 +26957,8 @@ var _reactRedux = require("react-redux");
 var _settings = require("../actions/settings");
 
 var _Instructions = _interopRequireDefault(require("./Instructions"));
+
+var _deck = require("../actions/deck");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26946,13 +26976,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var App =
 /*#__PURE__*/
@@ -26960,9 +26992,29 @@ function (_Component) {
   _inherits(App, _Component);
 
   function App() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(App).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(App)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "startGame", function () {
+      _this.props.startGame();
+
+      fetch('https://deckofcardsapi.com/api/deck/new/shuffle/').then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        return _this.props.fetchDeckResult(json);
+      });
+    });
+
+    return _this;
   }
 
   _createClass(App, [{
@@ -26972,7 +27024,7 @@ function (_Component) {
       return _react.default.createElement("div", null, _react.default.createElement("h2", null, "Even or Odds"), this.props.gameStarted ? _react.default.createElement("div", null, _react.default.createElement("h3", null, "The game is on!"), _react.default.createElement("br", null), _react.default.createElement("button", {
         onClick: this.props.cancelGame
       }, "Cancel Game")) : _react.default.createElement("div", null, _react.default.createElement("h3", null, "A new game awaits"), _react.default.createElement("br", null), _react.default.createElement("button", {
-        onClick: this.props.startGame
+        onClick: this.startGame
       }, "Start Game"), _react.default.createElement("hr", null), _react.default.createElement(_Instructions.default, null)));
     }
   }]);
@@ -26994,6 +27046,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     cancelGame: function cancelGame() {
       return dispatch((0, _settings.cancelGame)());
+    },
+    fetchDeckResult: function fetchDeckResult(deckJson) {
+      return dispatch((0, _deck.fetchDeckResult)(deckJson));
     }
   };
 };
@@ -27003,7 +27058,7 @@ var componentConnector = (0, _reactRedux.connect)(mapStateToProps, mapDispatchTo
 var _default = componentConnector(App);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/settings":"actions/settings.js","./Instructions":"components/Instructions.js"}],"reducers/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/settings":"actions/settings.js","./Instructions":"components/Instructions.js","../actions/deck":"actions/deck.js"}],"reducers/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27038,6 +27093,14 @@ var rootReducer = function rootReducer() {
     case _types.SET_INSTRUCTIONS_EXPANDED:
       return _objectSpread({}, state, {
         instructionsExpanded: action.instructionsExpanded
+      });
+
+    case _types.FETCH_DECK_RESULT:
+      var remaining = action.remaining,
+          deck_id = action.deck_id;
+      return _objectSpread({}, state, {
+        remaining: remaining,
+        deck_id: deck_id
       });
 
     default:

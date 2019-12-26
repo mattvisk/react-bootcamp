@@ -1,5 +1,5 @@
 import { SET_GAME_STARTED, SET_INSTRUCTIONS_EXPANDED } from './types';
-
+// action creators
 export const startGame = () => {
     return { type: SET_GAME_STARTED, gameStarted: true};
 };
