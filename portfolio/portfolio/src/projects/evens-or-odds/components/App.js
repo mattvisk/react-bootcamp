@@ -17,7 +17,6 @@ class App extends Component {
     }
 
     render() {
-        console.log('this', this);
 
         if (this.props.fetchState === fetchStates.error) {
             return (
@@ -43,7 +42,7 @@ class App extends Component {
                             <hr />
                             <Card />
                             <hr />
-                            <button onClick={this.props.cancelGame}>Cancel Game</button>
+                            <button onClick={this.props.cancelGame}>End Game</button>
                         </div>
                     ) : (
                         <div>
@@ -64,22 +63,12 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-
     const {
         settings: { gameStarted },
         deck: { fetchState, message }
     } = state;
-
     return { gameStarted, fetchState, message };
 }
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         startGame: () => dispatch(startGame()),
-//         cancelGame: () => dispatch(cancelGame()),
-//         fetchNewDeck: () => dispatch(fetchNewDeck())
-//     };
-// }
 
 const componentConnector = connect(
     mapStateToProps,

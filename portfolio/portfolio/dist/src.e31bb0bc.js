@@ -32862,15 +32862,13 @@ function (_Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      console.log('this', this);
-
       if (this.props.fetchState === _fetchStates.default.error) {
         return _react.default.createElement("div", null, _react.default.createElement("p", null, "Please try reloading the app. An error occured. "), _react.default.createElement("p", null, this.props.message));
       }
 
       return _react.default.createElement("div", null, _react.default.createElement("h2", null, "Even or Odds"), this.props.gameStarted ? _react.default.createElement("div", null, _react.default.createElement("h3", null, "The game is on!"), _react.default.createElement(_GameState.default, null), _react.default.createElement("br", null), _react.default.createElement(_Guess.default, null), _react.default.createElement("br", null), _react.default.createElement(_DrawCard.default, null), _react.default.createElement("hr", null), _react.default.createElement(_Card.default, null), _react.default.createElement("hr", null), _react.default.createElement("button", {
         onClick: this.props.cancelGame
-      }, "Cancel Game")) : _react.default.createElement("div", null, _react.default.createElement("h3", null, "A new game awaits"), _react.default.createElement("br", null), _react.default.createElement("button", {
+      }, "End Game")) : _react.default.createElement("div", null, _react.default.createElement("h3", null, "A new game awaits"), _react.default.createElement("br", null), _react.default.createElement("button", {
         onClick: this.startGame
       }, "Start Game"), _react.default.createElement("hr", null), _react.default.createElement(_Instructions.default, null)));
     }
@@ -32889,14 +32887,7 @@ var mapStateToProps = function mapStateToProps(state) {
     fetchState: fetchState,
     message: message
   };
-}; // const mapDispatchToProps = dispatch => {
-//     return {
-//         startGame: () => dispatch(startGame()),
-//         cancelGame: () => dispatch(cancelGame()),
-//         fetchNewDeck: () => dispatch(fetchNewDeck())
-//     };
-// }
-
+};
 
 var componentConnector = (0, _reactRedux.connect)(mapStateToProps, {
   startGame: _settings.startGame,
@@ -33224,7 +33215,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54004" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53085" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

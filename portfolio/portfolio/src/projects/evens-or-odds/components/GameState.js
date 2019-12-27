@@ -2,16 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const correctGuessesRecordKey = 'CORRECT_GUESSES_RECORD';
-
 const checkRecord = correctGuesses => {
     const record = Number(localStorage.getItem(correctGuessesRecordKey));
-    
     if(correctGuesses > record) {
         localStorage.setItem(correctGuessesRecordKey, correctGuesses);
-
         return { record: correctGuesses, isNewRecord: true };
     }
-
     return { record, isNewRecord: false };
 };
 
