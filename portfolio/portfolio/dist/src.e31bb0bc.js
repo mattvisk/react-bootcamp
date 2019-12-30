@@ -30455,7 +30455,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets\\PatuaOne-Regular.ttf":[["PatuaOne-Regular.ba137e58.ttf","projects/music-master/assets/PatuaOne-Regular.ttf"],"projects/music-master/assets/PatuaOne-Regular.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"projects/music-master/index.js":[function(require,module,exports) {
+},{"./assets/PatuaOne-Regular.ttf":[["PatuaOne-Regular.ba137e58.ttf","projects/music-master/assets/PatuaOne-Regular.ttf"],"projects/music-master/assets/PatuaOne-Regular.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"projects/music-master/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33099,7 +33099,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets\\PatuaOne-Regular.ttf":[["PatuaOne-Regular.5a5cc670.ttf","projects/evens-or-odds/assets/PatuaOne-Regular.ttf"],"projects/evens-or-odds/assets/PatuaOne-Regular.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"projects/evens-or-odds/index.js":[function(require,module,exports) {
+},{"./assets/PatuaOne-Regular.ttf":[["PatuaOne-Regular.5a5cc670.ttf","projects/evens-or-odds/assets/PatuaOne-Regular.ttf"],"projects/evens-or-odds/assets/PatuaOne-Regular.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"projects/evens-or-odds/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33138,7 +33138,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets\\PatuaOne-Regular.ttf":[["PatuaOne-Regular.1bfd8419.ttf","assets/PatuaOne-Regular.ttf"],"assets/PatuaOne-Regular.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"./assets/PatuaOne-Regular.ttf":[["PatuaOne-Regular.1bfd8419.ttf","assets/PatuaOne-Regular.ttf"],"assets/PatuaOne-Regular.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -33215,7 +33215,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53085" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64691" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
