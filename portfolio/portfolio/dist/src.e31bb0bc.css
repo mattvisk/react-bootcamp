@@ -64,6 +64,18 @@ h1,h2,h3,h4,h5 {
 }
 @font-face {
     font-family: PatuaOne;
+    src: url(/PatuaOne-Regular.f0c064d9.ttf);
+    font-weight:400;
+}
+body {
+    margin:0;
+    text-align:center;
+}
+h1,h2,h3,h4,h5 {
+    font-family:PatuaOne;
+}
+@font-face {
+    font-family: PatuaOne;
     src: url(/PatuaOne-Regular.1bfd8419.ttf);
     font-weight:400;
 }
